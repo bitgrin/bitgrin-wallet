@@ -285,6 +285,10 @@ impl WalletCommAdapter for KeybaseWalletCommAdapter {
 		true
 	}
 
+	fn send_tx_sync_legacy(&self, dest: &str, slate: &Slate) -> Result<Slate, Error> {
+		panic!("Not implemented");
+	}
+
 	// Send a slate to a keybase username then wait for a response for TTL seconds.
 	fn send_tx_sync(&self, addr: &str, slate: &Slate) -> Result<Slate, Error> {
 		// Limit only one recipient

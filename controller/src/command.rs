@@ -35,7 +35,7 @@ use crate::impls::{
 	LMDBBackend, NullWalletCommAdapter,
 };
 use crate::impls::{HTTPNodeClient, WalletSeed};
-use crate::libwallet::{InitTxArgs, IssueInvoiceTxArgs, NodeClient, WalletInst};
+use crate::libwallet::{InitTxArgs, IssueInvoiceTxArgs, NodeClient, WalletInst, ErrorKind::OutdatedRecipient};
 use crate::{controller, display};
 
 /// Arguments common to all wallet commands
@@ -279,7 +279,7 @@ pub fn send(
 			let mut slate = match result {
 				Ok(s) => {
 					info!(
-						"Tx created: {} grin to {} (strategy '{}')",
+						"Tx created: {} bitgrin to {} (strategy '{}')",
 						core::amount_to_hr_string(args.amount, false),
 						args.dest,
 						args.selection_strategy,
@@ -291,6 +291,7 @@ pub fn send(
 					return Err(e);
 				}
 			};
+			error!("Arg: {}", args.dest);
 			let adapter = match args.method.as_str() {
 				"http" => HTTPWalletCommAdapter::new(),
 				"file" => FileWalletCommAdapter::new(),
@@ -299,7 +300,19 @@ pub fn send(
 				_ => NullWalletCommAdapter::new(),
 			};
 			if adapter.supports_sync() {
-				slate = adapter.send_tx_sync(&args.dest, &slate)?;
+				let slate_send_tx_resp = adapter.send_tx_sync(&args.dest, &slate);
+				slate = match slate_send_tx_resp {
+					Err(e) => {
+						if e.kind() == OutdatedRecipient {
+							warn!("Outdated recipient, downgrading send to legacy http");
+							adapter.send_tx_sync_legacy(&args.dest, &slate);
+						}
+						panic!("{:?}", e);
+					},
+					Ok(slate) => {
+						slate
+					},
+				};
 				api.tx_lock_outputs(&slate, 0)?;
 				if args.method == "self" {
 					controller::foreign_single_use(wallet, |api| {

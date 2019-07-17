@@ -38,6 +38,9 @@ pub trait WalletCommAdapter {
 	/// Send a transaction asynchronously (result will be returned via the listener)
 	fn send_tx_async(&self, addr: &str, slate: &Slate) -> Result<(), Error>;
 
+	// Same as send_tx_async but uses legacy API and slate format
+	fn send_tx_sync_legacy(&self, dest: &str, slate: &Slate) -> Result<Slate, Error>;
+
 	/// Receive a transaction async. (Actually just read it from wherever and return the slate)
 	fn receive_tx_async(&self, params: &str) -> Result<Slate, Error>;
 

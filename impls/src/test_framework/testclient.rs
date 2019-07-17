@@ -349,6 +349,10 @@ impl WalletCommAdapter for LocalWalletClient {
 		true
 	}
 
+	fn send_tx_sync_legacy(&self, dest: &str, slate: &Slate) -> Result<Slate, libwallet::Error> {
+		panic!("Not implemented");
+	}
+
 	/// Send the slate to a listening wallet instance
 	fn send_tx_sync(&self, dest: &str, slate: &Slate) -> Result<Slate, libwallet::Error> {
 		let m = WalletProxyMessage {

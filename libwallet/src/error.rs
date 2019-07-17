@@ -69,6 +69,10 @@ pub enum ErrorKind {
 	#[fail(display = "Client Callback Error: {}", _0)]
 	ClientCallback(String),
 
+	/// Outdated recipient
+	#[fail(display = "Outdated recipient")]
+	OutdatedRecipient,
+
 	/// Secp Error
 	#[fail(display = "Secp error")]
 	Secp(secp::Error),

@@ -36,6 +36,10 @@ impl WalletCommAdapter for FileWalletCommAdapter {
 		false
 	}
 
+	fn send_tx_sync_legacy(&self, dest: &str, slate: &Slate) -> Result<Slate, Error> {
+		panic!("Not implemented");
+	}
+
 	fn send_tx_sync(&self, _dest: &str, _slate: &Slate) -> Result<Slate, Error> {
 		unimplemented!();
 	}

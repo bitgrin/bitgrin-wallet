@@ -43,11 +43,7 @@ impl HTTPWalletCommAdapter {
 			let mut report = format!("Performing version check (is recipient listening?): {}", e);
 			let err_string = format!("{}", e);
 			if err_string.contains("404") {
-				// Report that the other version of the wallet is out of date
-				report = format!(
-					"Other wallet is incompatible and requires an upgrade. \
-					 Please urge the other wallet owner to upgrade and try the transaction again."
-				);
+				return ErrorKind::OutdatedRecipient;
 			}
 			error!("{}", report);
 			ErrorKind::ClientCallback(report)
@@ -91,6 +87,53 @@ impl HTTPWalletCommAdapter {
 impl WalletCommAdapter for HTTPWalletCommAdapter {
 	fn supports_sync(&self) -> bool {
 		true
+	}
+
+	fn send_tx_sync_legacy(&self, dest: &str, slate: &Slate) -> Result<Slate, Error> {
+
+error!("version: {}",slate.version_info.version);
+		if slate.version_info.version == 2 {
+			// Downgrade a v2 slate to v1 before sending it
+			let mut res = slate.clone();
+			res.version_info.orig_version = 2;
+			let s = serde_json::to_string(&res);
+			assert!(s.is_ok());
+			let s = s.unwrap();
+			let v = Slate::parse_slate_version(&s);
+			assert!(v.is_ok());
+			error!("v slate: {}", v.unwrap());
+			// assert_eq!(v.unwrap(), 1);
+			println!("v2 -> v1: {}", s);
+			/*res.version_info.orig_version = 0;
+			let s = serde_json::to_string(&res);
+			assert!(s.is_ok());
+			let s = s.unwrap();
+			let v = Slate::parse_slate_version(&s);
+			assert!(v.is_ok());
+			assert_eq!(v.unwrap(), 0);
+			println!("v2 -> v0: {}", s);*/
+		}
+
+		if &dest[..4] != "http" {
+			let err_str = format!(
+				"dest formatted as {} but send -d expected stdout or http://IP:port",
+				dest
+			);
+			error!("{}", err_str,);
+			Err(ErrorKind::Uri)?
+		}
+		let url = format!("{}/v1/wallet/foreign/receive_tx", dest);
+		debug!("Posting transaction slate to {}", url);
+
+		let res = api::client::post(url.as_str(), None, slate);
+		match res {
+			Err(e) => {
+				let report = format!("Posting transaction slate (is recipient listening?): {}", e);
+				error!("{}", report);
+				Err(ErrorKind::ClientCallback(report).into())
+			}
+			Ok(r) => Ok(r),
+		}
 	}
 
 	fn send_tx_sync(&self, dest: &str, slate: &Slate) -> Result<Slate, Error> {

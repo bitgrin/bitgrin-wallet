@@ -34,6 +34,10 @@ impl WalletCommAdapter for NullWalletCommAdapter {
 		true
 	}
 
+	fn send_tx_sync_legacy(&self, dest: &str, slate: &Slate) -> Result<Slate, Error> {
+		panic!("Not implemented");
+	}
+
 	fn send_tx_sync(&self, _dest: &str, slate: &Slate) -> Result<Slate, Error> {
 		Ok(slate.clone())
 	}
