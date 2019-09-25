@@ -99,7 +99,7 @@ pub fn add_block_with_reward(chain: &Chain, txs: Vec<&Transaction>, reward: CbDa
 	)
 	.unwrap();
 	chain.process_block(b, chain::Options::MINE).unwrap();
-	chain.validate(false).unwrap();
+	chain.validate(false, false).unwrap();
 }
 
 /// adds a reward output to a wallet, includes that reward in a block, mines
