@@ -40,7 +40,7 @@ pub struct KeybaseWalletCommAdapter {}
 
 impl KeybaseWalletCommAdapter {
 	/// Check if keybase is installed and return an adapter object.
-	pub fn new() -> Box<WalletCommAdapter> {
+	pub fn new() -> Box<dyn WalletCommAdapter> {
 		let mut proc = if cfg!(target_os = "windows") {
 			Command::new("where")
 		} else {

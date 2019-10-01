@@ -58,7 +58,7 @@ pub fn instantiate_wallet(
 	node_client: impl NodeClient + 'static,
 	passphrase: &str,
 	account: &str,
-) -> Result<Arc<Mutex<WalletInst<impl NodeClient, keychain::ExtKeychain>>>, Error> {
+) -> Result<Arc<Mutex<dyn WalletInst<impl NodeClient, keychain::ExtKeychain>>>, Error> {
 	// First test decryption, so we can abort early if we have the wrong password
 	let _ = WalletSeed::from_file(&wallet_config, passphrase)?;
 	let mut db_wallet = LMDBBackend::new(wallet_config.clone(), passphrase, node_client)?;

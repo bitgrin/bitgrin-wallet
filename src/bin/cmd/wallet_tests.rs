@@ -121,7 +121,7 @@ mod wallet_tests {
 		node_client: LocalWalletClient,
 		passphrase: &str,
 		account: &str,
-	) -> Result<Arc<Mutex<WalletInst<LocalWalletClient, ExtKeychain>>>, bitgrin_wallet_controller::Error>
+	) -> Result<Arc<Mutex<dyn WalletInst<LocalWalletClient, ExtKeychain>>>, bitgrin_wallet_controller::Error>
 	{
 		wallet_config.chain_type = None;
 		// First test decryption, so we can abort early if we have the wrong password

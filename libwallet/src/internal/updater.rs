@@ -21,7 +21,6 @@ use uuid::Uuid;
 use crate::error::Error;
 use crate::bitgrin_core::consensus::{reward, get_coinbase_maturity_for_block};
 use crate::bitgrin_core::core::{Output, TxKernel};
-use crate::bitgrin_core::global;
 use crate::bitgrin_core::libtx::proof::ProofBuilder;
 use crate::bitgrin_core::libtx::reward;
 use crate::bitgrin_keychain::{Identifier, Keychain, SwitchCommitmentType};

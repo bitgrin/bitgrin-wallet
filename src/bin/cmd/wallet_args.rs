@@ -211,7 +211,7 @@ pub fn inst_wallet(
 	config: WalletConfig,
 	g_args: &command::GlobalArgs,
 	node_client: impl NodeClient + 'static,
-) -> Result<Arc<Mutex<WalletInst<impl NodeClient + 'static, keychain::ExtKeychain>>>, ParseError> {
+) -> Result<Arc<Mutex<dyn WalletInst<impl NodeClient + 'static, keychain::ExtKeychain>>>, ParseError> {
 	let passphrase = prompt_password(&g_args.password);
 	let res = instantiate_wallet(config.clone(), node_client, &passphrase, &g_args.account);
 	match res {
