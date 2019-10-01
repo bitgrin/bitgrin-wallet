@@ -12,3 +12,9 @@ wallet.seed
 test_output
 wallet*
 .idea/
+build/
+debian/.debhelper/
+debian/*.log
+debian/bitgrin-wallet.substvars
+debian/files
+debian/bitgrin-wallet/
