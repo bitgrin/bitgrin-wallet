@@ -1,6 +1,6 @@
 [package]
 name = "bitgrin_wallet_util"
-version = "2.0.0"
+version = "2.0.5"
 authors = ["Bitgrin Developers <bitgrin@protonmail.com>"]
 description = "Util, for generic utilities and to re-export grin crates"
 license = "Apache-2.0"
@@ -33,14 +33,21 @@ dirs = "1.0.3"
 # bitgrin_store = { git = "https://github.com/bitgrin/grin", tag = "2.0.0-beta.2" }
 
 # For bleeding edge
-bitgrin_core = { git = "https://github.com/bitgrin/bitgrin", tag = "2.0.1" }
-bitgrin_keychain = { git = "https://github.com/bitgrin/bitgrin", tag = "2.0.1" }
-bitgrin_chain = { git = "https://github.com/bitgrin/bitgrin", tag = "2.0.1" }
-bitgrin_util = { git = "https://github.com/bitgrin/bitgrin", tag = "2.0.1" }
-bitgrin_api = { git = "https://github.com/bitgrin/bitgrin", tag = "2.0.1" }
-bitgrin_store = { git = "https://github.com/bitgrin/bitgrin", tag = "2.0.1" }
+bitgrin_core = { git = "https://github.com/bitgrin/bitgrin", tag = "2.0.5" }
+bitgrin_keychain = { git = "https://github.com/bitgrin/bitgrin", tag = "2.0.5" }
+bitgrin_chain = { git = "https://github.com/bitgrin/bitgrin", tag = "2.0.5" }
+bitgrin_util = { git = "https://github.com/bitgrin/bitgrin", tag = "2.0.5" }
+bitgrin_api = { git = "https://github.com/bitgrin/bitgrin", tag = "2.0.5" }
+bitgrin_store = { git = "https://github.com/bitgrin/bitgrin", tag = "2.0.5" }
 
 # For local testing
+# bitgrin_core = { path = "../../bitgrin/core", version = "2.0.5" }
+# bitgrin_keychain = { path = "../../bitgrin/keychain", version = "2.0.5" }
+# bitgrin_chain = { path = "../../bitgrin/chain", version = "2.0.5" }
+# bitgrin_util = { path = "../../bitgrin/util", version = "2.0.5" }
+# bitgrin_api = { path = "../../bitgrin/api", version = "2.0.5" }
+# bitgrin_store = { path = "../../bitgrin/store", version = "2.0.5" }
+
 #grin_core = { path = "../../grin/core", version= "2.0.0-beta.2"}
 #grin_keychain = { path = "../../grin/keychain", version= "2.0.0-beta.2"}
 #grin_chain = { path = "../../grin/chain", version= "2.0.0-beta.2"}

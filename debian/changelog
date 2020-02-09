@@ -1,4 +1,10 @@
-bitgrin-wallet (2.0.2) bionic; urgency=medium
+bitgrin-wallet (2.0.2) bionic; urgency=high
+
+  * Update for hard fork
+
+ -- pharazen <pharazen@protonmail.com> Sun, 09 Feb 2020 11:10:05 -05000
+
+ bitgrin-wallet (2.0.2) bionic; urgency=medium
 
   * Initial release.
 

@@ -1,6 +1,6 @@
 [package]
 name = "bitgrin_wallet_libwallet"
-version = "2.0.2"
+version = "2.0.5"
 authors = ["Bitgrin Developers <bitgrin@protonmail.com>"]
 description = "Simple, private and scalable cryptocurrency implementation based on the MimbleWimble chain format."
 license = "Apache-2.0"
@@ -25,7 +25,7 @@ lazy_static = "1"
 strum = "0.15"
 strum_macros = "0.15"
 
-bitgrin_wallet_util = { path = "../util", version = "2.0.0" }
+bitgrin_wallet_util = { path = "../util", version = "2.0.5" }
 
 [dev-dependencies]
-bitgrin_wallet_config = { path = "../config", version = "2.0.0" }
+bitgrin_wallet_config = { path = "../config", version = "2.0.5" }

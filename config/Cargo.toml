@@ -1,6 +1,6 @@
 [package]
 name = "bitgrin_wallet_config"
-version = "2.0.0"
+version = "2.0.5"
 authors = ["Bitgrin Developers <bitgrin@protonmail.com>"]
 description = "Configuration for grin wallet , a simple, private and scalable cryptocurrency implementation based on the MimbleWimble chain format."
 license = "Apache-2.0"
@@ -16,7 +16,7 @@ serde_derive = "1"
 toml = "0.4"
 dirs = "1.0.3"
 
-bitgrin_wallet_util = { path = "../util", version = "2.0.0" }
+bitgrin_wallet_util = { path = "../util", version = "2.0.5" }
 
 [dev-dependencies]
 pretty_assertions = "0.5.1"
