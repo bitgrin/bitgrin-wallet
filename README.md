@@ -1,3 +1,8 @@
+# Installation
+```
+curl -sLO https://github.com/bitgrin/bitgrin-wallet/releases/download/2.0.5/bitgrin-wallet_2.0.5_amd64.deb && sudo dpkg -i bitgrin-wallet_2.0.5_amd64.deb && rm bitgrin-wallet_2.0.5_amd64.deb
+```
+
 [![Build Status](https://dev.azure.com/mimblewimble/grin-wallet/_apis/build/status/mimblewimble.bitgrin-wallet?branchName=master)](https://dev.azure.com/mimblewimble/grin-wallet/_build/latest?definitionId=3&branchName=master)
 [![Coverage Status](https://img.shields.io/codecov/c/github/mimblewimble/grin-wallet/master.svg)](https://codecov.io/gh/mimblewimble/grin-wallet)
 [![Chat](https://img.shields.io/gitter/room/grin_community/Lobby.svg)](https://gitter.im/grin_community/Lobby)
@@ -13,11 +18,6 @@ This is the reference implementation of [Bitgrin's](https://github.com/bitgrin/b
 * The Bitgrin Wallet APIs, which are intended for use by Bitgrin community wallet developers. The wallet APIs can be directly linked into other projects or invoked via a JSON-RPC interface.
 
 * A reference command-line wallet, which provides a baseline wallet for Bitgrin and demonstrates how the wallet APIs should be called.
-
-# Installation
-```
-curl -sLO https://github.com/bitgrin/bitgrin-wallet/releases/download/v2.0.2/bitgrin-wallet_2.0.2_amd64.deb && sudo dpkg -i bitgrin-wallet_2.0.2_amd64.deb && rm bitgrin-wallet_2.0.2_amd64.deb
-```
 
 # Usage
 
